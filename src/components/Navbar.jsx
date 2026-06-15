@@ -52,21 +52,7 @@ const navigate = useNavigate();
             </li>
 
 
-            {/* Cart icon */}
-            <li className="nav-item">
-              <NavLink className="nav-link position-relative" to="/cart">
-                🛒
-                {totalItems > 0 && (
-                  <span
-                    className="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger"
-                    style={{ fontSize: "0.65rem" }}
-                  >
-                    {totalItems}
-                    <span className="visually-hidden">items in cart</span>
-                  </span>
-                )}
-              </NavLink>
-            </li>
+           
            
               
              
