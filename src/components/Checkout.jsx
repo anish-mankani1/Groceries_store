@@ -2,6 +2,8 @@ import { useCart } from "./Cartitems";
 import { useNavigate } from "react-router-dom";
 import { useState } from "react";
 
+
+
 export default function CheckoutPage() {
   const { cartItems, totalItems, totalPrice, clearCart } = useCart();
   const navigate = useNavigate();
@@ -26,6 +28,72 @@ export default function CheckoutPage() {
     clearCart();
     navigate("/order-success");
   };
+
+  const handlePayment = async () => {
+    try {
+      // Step 1: Call your backend to create an order
+      const response = await fetch("https://groceries-store-backend-1jb9.onrender.com/api/payment/create-order", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ amount: totalPrice })
+      });
+
+      const orderData = await response.json();
+
+      // Step 2: Open Razorpay checkout popup
+      const options = {
+        key: orderData.keyId,
+        amount: orderData.amount,
+        currency: orderData.currency,
+        order_id: orderData.orderId,
+        name: "FreshMart",
+        description: "Order Payment",
+        handler: async function (paymentResponse) {
+          // Step 3: Send payment details to backend for verification
+          try {
+            const verifyResponse = await fetch("https://groceries-store-backend-1jb9.onrender.com/api/payment/verify", {
+              method: "POST",
+              headers: { "Content-Type": "application/json" },
+              body: JSON.stringify({
+                razorpay_order_id: paymentResponse.razorpay_order_id,
+                razorpay_payment_id: paymentResponse.razorpay_payment_id,
+                razorpay_signature: paymentResponse.razorpay_signature
+              })
+            });
+
+            const verifyData = await verifyResponse.json();
+
+            if (verifyData.success) {
+              alert("Payment successful! Payment ID: " + paymentResponse.razorpay_payment_id);
+              clearCart();
+              navigate("/");
+
+            } else {
+              alert("Payment verification failed. Please contact support.");
+            }
+          } catch (verifyError) {
+            console.error("Verification error:", verifyError);
+            alert("Payment was made, but verification failed. Please contact support.");
+          }
+        },
+        prefill: {
+          name: "Customer Name",
+          email: "customer@example.com",
+          contact: "9999999999"
+        },
+        theme: {
+          color: "#3B7E0F"
+        }
+      };
+
+      const rzp = new window.Razorpay(options);
+      rzp.open();
+
+    } catch (error) {
+      console.error("Payment failed:", error);
+      alert("Something went wrong. Please try again.");
+    }
+};
 
   return (
     <div style={styles.page}>
@@ -53,31 +121,7 @@ export default function CheckoutPage() {
             </div>
           </div>
 
-          {/* Payment Method */}
-          <div style={styles.card}>
-            <h2 style={styles.cardTitle}>💳 Payment Method</h2>
 
-            {["cod", "upi", "card"].map((method) => (
-              <label key={method} style={styles.radioLabel}>
-                <input
-                  type="radio"
-                  name="payment"
-                  value={method}
-                  checked={paymentMethod === method}
-                  onChange={() => setPaymentMethod(method)}
-                  style={{ marginRight: "10px" }}
-                />
-                {method === "cod" && "💵 Cash on Delivery"}
-                {method === "upi" && "📱 UPI / GPay / PhonePe"}
-                {method === "card" && "💳 Credit / Debit Card"}
-              </label>
-            ))}
-
-            {paymentMethod === "upi" && (
-              <input style={{ ...styles.input, marginTop: "12px" }}
-                placeholder="Enter UPI ID (e.g. name@upi)" />
-            )}
-          </div>
         </div>
 
         {/* RIGHT: Order Summary */}
@@ -109,8 +153,8 @@ export default function CheckoutPage() {
             <span>₹{totalPrice}</span>
           </div>
 
-          <button style={styles.placeOrderBtn} onClick={handlePlaceOrder}>
-            ✅ Place Order
+          <button onClick={handlePayment}>
+            Pay ₹{totalPrice}
           </button>
 
           <button style={styles.backBtn} onClick={() => navigate("/cart")}>
