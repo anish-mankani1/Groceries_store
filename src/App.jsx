@@ -43,30 +43,7 @@ function App() {
         <Route path="/faqs" element={<Faqs />} />
       </Routes>
       <Footer/>
-      {/* Floating Chatbot Button + Window */}
-          <div style={{ position: "fixed", bottom: "24px", right: "24px", zIndex: 9999 }}>
-
-            {/* Chat window - shows when open */}
-            {showChat && (
-              <div style={{ marginBottom: "12px" }}>
-                <Chatbot />
-              </div>
-            )}
-
-            {/* Toggle Button */}
-            <button
-              onClick={() => setShowChat(!showChat)}
-              style={{
-                width: "56px", height: "56px", borderRadius: "50%",
-                backgroundColor: "#1D9E75", border: "none",
-                color: "white", fontSize: "24px", cursor: "pointer",
-                boxShadow: "0 4px 12px rgba(0,0,0,0.2)",
-                display: "flex", alignItems: "center", justifyContent: "center",
-                marginLeft: "auto"
-              }}>
-              {showChat ? "✕" : "🛒"}
-            </button>
-          </div>
+      
     </Router>
      </CartProvider> 
     </>
