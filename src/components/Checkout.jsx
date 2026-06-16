@@ -32,7 +32,7 @@ export default function CheckoutPage() {
   const handlePayment = async () => {
     try {
       // Step 1: Call your backend to create an order
-      const response = await fetch("https://groceries-store-backend-1jb9.onrender.com/api/payment/create-order", {
+      const response = await fetch("https://groceries-store-backend-8enm.onrender.com/api/payment/create-order", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ amount: totalPrice })
@@ -51,7 +51,7 @@ export default function CheckoutPage() {
         handler: async function (paymentResponse) {
           // Step 3: Send payment details to backend for verification
           try {
-            const verifyResponse = await fetch("https://groceries-store-backend-1jb9.onrender.com/api/payment/verify", {
+            const verifyResponse = await fetch("https://groceries-store-backend-8enm.onrender.com/api/payment/verify", {
               method: "POST",
               headers: { "Content-Type": "application/json" },
               body: JSON.stringify({
