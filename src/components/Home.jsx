@@ -150,6 +150,7 @@ const features = [
 ];
 
 export default function HomePage() {
+  const navigate = useNavigate();
   return (
     <div>
       {/* Hero */}
