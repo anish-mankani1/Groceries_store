@@ -1,5 +1,5 @@
 import React from 'react'
-
+import { useNavigate } from "react-router-dom";
 
 
 const styles = {
@@ -162,8 +162,8 @@ export default function HomePage() {
           Shop fresh vegetables, fruits, dairy, and more — all sourced locally and delivered to your door.
         </p>
         <div style={styles.heroBtns}>
-          <button onClick={() => (window.location.href = "/Shop")} style={styles.btnPrimary}>Shop Now</button>
-          <button onClick={() => (window.location.href = "/Shop")} style={styles.btnSecondary}>Browse Categories</button>
+          <button onClick={() => (navigate("/Shop"))} style={styles.btnPrimary}>Shop Now</button>
+          <button onClick={() => (navigate("/Shop"))} style={styles.btnSecondary}>Browse Categories</button>
         </div>
       </section>
 
