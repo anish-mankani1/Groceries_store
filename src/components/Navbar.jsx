@@ -8,7 +8,7 @@ import { useNavigate } from "react-router-dom";
 
 export default function Navbar() {
   const { totalItems } = useCart();
-const navigate = useNavigate();
+  const navigate = useNavigate();
   return (
     <nav className="navbar navbar-expand-lg navbar-dark" style={{ backgroundColor: "#0a0a0a" }}>
       <div className="container">
@@ -43,13 +43,22 @@ const navigate = useNavigate();
             <li className="nav-item">
               <NavLink className="nav-link" to="/about">About Us</NavLink>
             </li>
-            
+
             <li className="nav-item">
               <NavLink className="nav-link" to="/blog">Blog</NavLink>
             </li>
             <li className="nav-item">
               <NavLink className="nav-link" to="/contact">Contact Us</NavLink>
             </li>
+
+            <button
+              onClick={() =>
+                window.location.href =
+                "http://localhost:8080/oauth2/authorization/google"
+              }
+            >
+              Continue with Google
+            </button>
 
 
             {/* Cart icon */}
@@ -67,10 +76,10 @@ const navigate = useNavigate();
                 )}
               </NavLink>
             </li>
-           
-              
-             
-            
+
+
+
+
           </ul>
         </div>
 

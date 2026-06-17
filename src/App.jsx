@@ -16,7 +16,7 @@ import Delivery_info from './components/Delivery_info'
 import Faqs from './components/Faqs'
 import ScrollToTop from './components/Scroll_top'
 import { useState } from 'react'
-
+import Notfound from './components/Notfound'
 
 
 function App() {
@@ -41,6 +41,7 @@ function App() {
         <Route path="/Return_policy" element={<Return_policy />} />
         <Route path="/Delivery_info" element={<Delivery_info />} />
         <Route path="/faqs" element={<Faqs />} />
+        <Route path="*" element={<Notfound />} />
       </Routes>
       <Footer/>
       
