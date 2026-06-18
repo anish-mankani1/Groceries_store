@@ -18,7 +18,7 @@ import ScrollToTop from './components/Scroll_top'
 import { useState } from 'react'
 import Notfound from './components/Notfound'
 import Login from './components/Login'
-
+import Authcallback from './components/Authcallback'
 
 function App() {
   const [showChat, setShowChat] = useState(false)
@@ -44,6 +44,7 @@ function App() {
         <Route path="/faqs" element={<Faqs />} />
         <Route path="*" element={<Notfound />} />
         <Route path="/login" element={<Login />} />
+        <Route path="/auth/callback" element={<Authcallback />} />
       </Routes>
       <Footer/>
       
