@@ -17,6 +17,7 @@ import Faqs from './components/Faqs'
 import ScrollToTop from './components/Scroll_top'
 import { useState } from 'react'
 import Notfound from './components/Notfound'
+import Login from './components/Login'
 
 
 function App() {
@@ -42,6 +43,7 @@ function App() {
         <Route path="/Delivery_info" element={<Delivery_info />} />
         <Route path="/faqs" element={<Faqs />} />
         <Route path="*" element={<Notfound />} />
+        <Route path="/login" element={<Login />} />
       </Routes>
       <Footer/>
       

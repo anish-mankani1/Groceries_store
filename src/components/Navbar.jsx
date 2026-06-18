@@ -51,14 +51,7 @@ export default function Navbar() {
               <NavLink className="nav-link" to="/contact">Contact Us</NavLink>
             </li>
 
-            <button
-              onClick={() =>
-                window.location.href =
-                "https://groceries-store-backend-8enm.onrender.com/oauth2/authorization/google"
-              }
-            >
-              Continue with Google
-            </button>
+
 
 
             {/* Cart icon */}
@@ -76,9 +69,13 @@ export default function Navbar() {
                 )}
               </NavLink>
             </li>
-
-
-
+            <button
+              className="btn btn-outline-light"
+              style={{ marginLeft: "20px" }}
+              onClick={() => navigate("/login")}
+            >
+              Login
+            </button>
 
           </ul>
         </div>
