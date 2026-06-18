@@ -6,6 +6,7 @@ const supabase = createClient(
   "https://gnpvdaifagpoxbczvohh.supabase.co",
   "sb_publishable_VRZgNmA2vM6Y39SgOYdJtA_zpeZ_B3c"
 );
+// nkama
 
 export default function Authcallback() {
   const [params] = useSearchParams();
