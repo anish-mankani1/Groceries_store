@@ -2,8 +2,8 @@ import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 // Replace these with your real backend URLs
 
-const GOOGLE_AUTH_URL = "https://your-backend.onrender.com/oauth2/authorization/google";
-const GITHUB_AUTH_URL = "https://your-backend.onrender.com/oauth2/authorization/github";
+const GOOGLE_AUTH_URL = "https://groceries-store-backend-8enm.onrender.com/oauth2/authorization/google";
+const GITHUB_AUTH_URL = "https://groceries-store-backend-8enm.onrender.com/oauth2/authorization/github";
 
 function Login({ onClose }) {
     const navigate = useNavigate();
