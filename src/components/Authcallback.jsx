@@ -19,10 +19,19 @@ export default function Authcallback() {
       const avatar = params.get("avatar");
       const provider = params.get("provider");
 
-      await supabase.from("Groceires_oauth").upsert(
-        { email, name, avatar_url: avatar, provider },
-        { onConflict: "email" }
-      );
+      const { data, error } = await supabase
+  .from("Groceries_oauth")
+  .upsert(
+    {
+      email,
+      name,
+      avatar_url: avatar,
+      provider,
+    },
+    { onConflict: "email" }
+  );
+
+console.log(error);
 
       navigate("/");
     };
