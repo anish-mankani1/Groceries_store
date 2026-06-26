@@ -77,6 +77,21 @@ export default function Navbar() {
               Login
             </button>
 
+            const user = JSON.parse(localStorage.getItem("freshmart_user"));
+
+            // Show user info
+            {user ? (
+              <div>
+                <img src={user.avatar} width={32} style={{ borderRadius: "50%" }} />
+                <span>{user.name}</span>
+                <button onClick={() => { localStorage.removeItem("freshmart_user"); window.location.reload(); }}>
+                  Logout
+                </button>
+              </div>
+            ) : (
+              <button onClick={() => navigate("/login")}>Login</button>
+            )}
+
           </ul>
         </div>
 

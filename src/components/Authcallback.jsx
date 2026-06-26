@@ -37,6 +37,7 @@ console.log(error);
     };
     saveUser();
   }, []);
+  localStorage.setItem("freshmart_user", JSON.stringify({ email, name, avatar, provider }));
 
   return <p>Signing you in...</p>;
 }
