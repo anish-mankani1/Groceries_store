@@ -9,6 +9,8 @@ import { useNavigate } from "react-router-dom";
 export default function Navbar() {
   const { totalItems } = useCart();
   const navigate = useNavigate();
+   const user = JSON.parse(localStorage.getItem("freshmart_user"));
+
   return (
     <nav className="navbar navbar-expand-lg navbar-dark" style={{ backgroundColor: "#0a0a0a" }}>
       <div className="container">
@@ -77,8 +79,7 @@ export default function Navbar() {
               Login
             </button>
 
-            const user = JSON.parse(localStorage.getItem("freshmart_user"));
-
+           
             // Show user info
             {user ? (
               <div>
