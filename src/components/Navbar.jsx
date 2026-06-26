@@ -71,6 +71,7 @@ export default function Navbar() {
                 )}
               </NavLink>
             </li>
+            
             {user ? (
               <li className="nav-item d-flex align-items-center gap-2" style={{ marginLeft: "20px" }}>
                 <img src={user.avatar} width={32} style={{ borderRadius: "50%" }} />
