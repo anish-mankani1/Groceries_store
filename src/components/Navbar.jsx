@@ -9,7 +9,7 @@ import { useNavigate } from "react-router-dom";
 export default function Navbar() {
   const { totalItems } = useCart();
   const navigate = useNavigate();
-   const user = JSON.parse(localStorage.getItem("freshmart_user"));
+  const user = JSON.parse(localStorage.getItem("freshmart_user"));
 
   return (
     <nav className="navbar navbar-expand-lg navbar-dark" style={{ backgroundColor: "#0a0a0a" }}>
@@ -71,26 +71,30 @@ export default function Navbar() {
                 )}
               </NavLink>
             </li>
-            <button
-              className="btn btn-outline-light"
-              style={{ marginLeft: "20px" }}
-              onClick={() => navigate("/login")}
-            >
-              Login
-            </button>
-
-           
-            // Show user info
             {user ? (
-              <div>
+              <li className="nav-item d-flex align-items-center gap-2" style={{ marginLeft: "20px" }}>
                 <img src={user.avatar} width={32} style={{ borderRadius: "50%" }} />
-                <span>{user.name}</span>
-                <button onClick={() => { localStorage.removeItem("freshmart_user"); window.location.reload(); }}>
+                <span className="text-white">{user.name}</span>
+                <button
+                  className="btn btn-outline-danger btn-sm"
+                  onClick={() => {
+                    localStorage.removeItem("freshmart_user");
+                    window.location.reload();
+                  }}
+                >
                   Logout
                 </button>
-              </div>
+              </li>
             ) : (
-              <button onClick={() => navigate("/login")}>Login</button>
+              <li className="nav-item">
+                <button
+                  className="btn btn-outline-light"
+                  style={{ marginLeft: "20px" }}
+                  onClick={() => navigate("/login")}
+                >
+                  Login
+                </button>
+              </li>
             )}
 
           </ul>
